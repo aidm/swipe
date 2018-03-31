@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        div {
+            width: 100%;
+            height: 100%;
+        }
+
+        #one {
+            background-color: pink;
+            height: 33.3333%;
+        }
+
+        #two {
+            background-color: blue;
+            height: 33.3333%;
+        }
+
+        #three {
+            background-color: yellow;
+            height: 33.3333%;
+        }
+
+        #box {
+            overflow: hidden;
+            height: 300%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #contain {
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="contain">
+    <div id="box">
+        <div id="one"></div>
+        <div id="two"></div>
+        <div id="three"></div>
+    </div>
+</div>
+<script src="animate.js"></script>
+<script>
+    var box = document.getElementById("box")
+    var one = document.getElementById("one")
+    var screenHeight = one.offsetHeight;
+    var count = 0;
+    document.onwheel = function (e) {
+        if (e.wheelDeltaY < 0) {
+            //向下滚动，需要看下一张
+            count++;
+            animateTop(box, -screenHeight * count)
+        }else if(e.wheelDeltaY > 0){
+            //向上滚动，需要看上一张
+            count--;
+            animateTop(box, -screenHeight * count)
+        }
+    }
+    //onwheel
+</script>
+</body>
+</html>
